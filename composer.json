@@ -1,0 +1,35 @@
+{
+    "name": "toneflix-code/kudi-sms-php",
+    "description": "A PHP wrapper for KudiSMS.",
+    "type": "library",
+    "require": {
+        "php": "^8.1|^8.2|^8.3",
+        "toneflix-code/sms-interface": "dev-main",
+        "vlucas/phpdotenv": "^5.6@dev"
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "^7.0",
+        "pestphp/pest": "2.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ToneflixCode\\KudiSmsPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "3m1n3nc3",
+            "email": "mygames.ng@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "pest"
+    },
+    "minimum-stability": "dev",
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
