@@ -22,7 +22,7 @@ jobs:
     - name: Print ENV
       run: |
         echo "Use Api Key $KUDISMS_API_KEY. On Gateway $KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
-        php -r "var_dump($_ENV)"
+        php -r "var_dump($_ENV);"
       env:
         KUDISMS_GATEWAY: 2
         KUDISMS_API_KEY: "sss"
