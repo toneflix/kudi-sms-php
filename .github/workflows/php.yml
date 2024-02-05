@@ -36,6 +36,10 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Run test suite
+      env:
+          KUDISMS_GATEWAY: ${{ secrets.KUDISMS_GATEWAY }}
+          KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
+          KUDISMS_SENDER_ID: ${{ secrets.KUDISMS_SENDER_ID }}
       run: composer run-script test
 
     - name: Upload coverage reports to Codecov
