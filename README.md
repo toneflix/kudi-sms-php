@@ -59,3 +59,10 @@ Call the `send` method with an array of numbers and message as parameters.
 ```php
 $instance->send(['0807...', '0903...'], 'This is a test SMS.');
 ```
+
+## Contributors
+
+- [Legacy](https://github.com/3m1n3nc3)
+
+## License
+[MIT](./LICENSE)
