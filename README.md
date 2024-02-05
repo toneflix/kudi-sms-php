@@ -23,6 +23,7 @@ composer require toneflix-code/kudi-sms-php
 | KUDISMS_GATEWAY     | No       | Your prefered gateway    |
 | KUDISMS_API_KEY     | Yes      | Your API key             |
 | KUDISMS_SENDER_ID   | Yes      | SMS Sender ID            |
+| TEST_NUMBERS        | No       | Numbers to send test sms |
 
 ## Usage
 
@@ -44,20 +45,50 @@ use ToneflixCode\KudiSmsPhp\SmsSender;
 $instance = new SmsSender('SenderID', 'APIKey');
 ```
 
+### Send OTP
+
+Call the `sendOtp` method with the recipient, otp, appnamecode and templatecode as parameters.
+
+```php
+$instance->sendOtp(
+    recipient: '0807...', 
+    otp: string, 
+    appnamecode: string, 
+    templatecode: string
+);
+```
+
 ### Send to a single number
 
 Call the `send` method with the number and message as parameters.
 
 ```php
-$instance->send('0807...', 'This is a test SMS.');
+$instance->send(
+    recipient: '0807...', 
+    message: string
+);
 ```
 
 ### Send to a multiple numbers
 
-Call the `send` method with an array of numbers and message as parameters.
+Call the `sendBulk` method with an array of numbers and message as parameters.
 
 ```php
-$instance->send(['0807...', '0903...'], 'This is a test SMS.');
+$instance->sendBulk(
+    recipients: ['0807...', '0903...'], 
+    message: string
+);
+```
+
+### Coporate SMS
+
+To send using the coporate endpoint call the chainable `coporate` method before calling the `send` or `sendBulk` methods.
+
+```php
+$instance->coporate()->send(
+    recipient: '0807...', 
+    message: string
+);
 ```
 
 ## Contributors

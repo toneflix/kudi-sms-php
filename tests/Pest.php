@@ -39,7 +39,9 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function loadEnv()
 {
-    // ..
+    // Load the .env file
+    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ .  '/..');
+    $dotenv->safeLoad();
 }

@@ -2,20 +2,24 @@
 
 namespace  ToneflixCode\KudiSmsPhp;
 
-use ToneflixCode\SmsInterface\Exceptions\InitializationException;
-use ToneflixCode\SmsInterface\Exceptions\SmsSendingException;
-use ToneflixCode\SmsInterface\Initializable;
-use ToneflixCode\SmsInterface\SendSmsInterface;
+use ToneflixCode\MessagingInterface\Exceptions\InitializationException;
+use ToneflixCode\MessagingInterface\Exceptions\SmsSendingException;
+use ToneflixCode\MessagingInterface\Initializable;
+use ToneflixCode\MessagingInterface\SendSmsInterface;
+use ToneflixCode\MessagingInterface\SendOtpInterface;
 
-class SmsSender implements SendSmsInterface
+class SmsSender implements SendSmsInterface, SendOtpInterface
 {
     use Initializable;
 
+    public string $baseUrl;
     public \GuzzleHttp\Client $client;
-    public string $baseUrl = 'https://my.kudisms.net/api/';
 
     public function __construct(string $senderID = null, string $apiKey = null)
     {
+        // Set the base url
+        $this->baseUrl = 'https://my.kudisms.net/api/';
+
         // Load the .env file
         $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ .  '/..');
         $dotenv->safeLoad();
@@ -37,7 +41,7 @@ class SmsSender implements SendSmsInterface
      * @param string $to
      * @param  string $message
      *
-     * @throws \ToneflixCode\SmsInterface\Exceptions\SmsSendingException
+     * @throws \ToneflixCode\MessagingInterface\Exceptions\SmsSendingException
      * @return bool
      *
     */
@@ -63,7 +67,7 @@ class SmsSender implements SendSmsInterface
 
         // Try to send the SMS
         try {
-            $response = $this->client->post('sms', [
+            $response = $this->client->post($this->endpoint ?? 'sms', [
                 'query' => [
                     'token' => $this->apiKey,
                     'senderID' => $this->senderID,
@@ -71,28 +75,7 @@ class SmsSender implements SendSmsInterface
                     'message' => $message,
                     'recipient' => $recipients,
                 ],
-                'multipart' => [
-                    [
-                        'name' => 'token',
-                        'contents' => $this->apiKey,
-                    ],
-                    [
-                        'name' => 'senderID',
-                        'contents' => $this->senderID,
-                    ],
-                    [
-                        'name' => 'recipients',
-                        'contents' => $recipients
-                    ],
-                    [
-                        'name' => 'message',
-                        'contents' => $message
-                    ],
-                    [
-                        'name' => 'gateway',
-                        'contents' => $this->gateway,
-                    ]
-                ]
+                'multipart' => $this->params($recipients, $message)
             ]);
         } catch (\GuzzleHttp\Exception\ClientException $th) {
             // If the error thrown is a 401 throw the configuration error.
@@ -110,7 +93,73 @@ class SmsSender implements SendSmsInterface
         $data = json_decode($response->getBody(), JSON_FORCE_OBJECT);
 
         if (isset($data['status']) && $data['status'] === 'error') {
-            throw new InitializationException($data['msg'], 1);
+            if (in_array($data['error_code'], [100, 101, 103, 105])) {
+                throw new InitializationException($data['msg'], 1);
+            } else {
+                throw new SmsSendingException($data['msg'] ?? '', 1);
+            }
+        }
+
+        if (isset($data['status']) && $data['status'] === 'success') {
+            return $data['error_code'] == 000;
+        }
+
+        return false;
+    }
+
+    /**
+     *  Send an otp to a number.
+     *
+     * @param string $to
+     * @param  string $otp
+     * @param  string $appnamecode
+     * @param  string $templatecode
+     *
+     * @throws \ToneflixCode\MessagingInterface\Exceptions\SmsSendingException
+     * @return bool
+     *
+    */
+    public function sendOtp(string $recipient, string $otp, string $appnamecode, string $templatecode): bool
+    {
+        // Try to send the SMS
+        try {
+            $response = $this->client->post('otp', [
+                'multipart' => $this->params($recipient, null, [
+                    [
+                        'name' => 'otp',
+                        'contents' => $otp,
+                    ],
+                    [
+                        'name' => 'appnamecode',
+                        'contents' => $appnamecode,
+                    ],
+                    [
+                        'name' => 'templatecode',
+                        'contents' => $templatecode,
+                    ],
+                ])
+            ]);
+        } catch (\GuzzleHttp\Exception\ClientException $th) {
+            // If the error thrown is a 401 throw the configuration error.
+            $error = json_decode($th->getResponse()->getBody(), JSON_FORCE_OBJECT);
+
+            if ($th->getResponse()->getStatusCode() === 401) {
+                throw new InitializationException($error['msg'] ?? $error['message'] ?? '', 1);
+            }
+
+            //  Re-throw any other exception as an APIException
+            throw new SmsSendingException($error['msg'] ?? $error['message'] ?? '', 1);
+        }
+
+        // Parse the returned response
+        $data = json_decode($response->getBody(), JSON_FORCE_OBJECT);
+
+        if (isset($data['status']) && $data['status'] === 'error') {
+            if (in_array($data['error_code'], [100, 101, 103, 105])) {
+                throw new InitializationException($data['msg'], 1);
+            } else {
+                throw new SmsSendingException($data['msg'] ?? $data['message'] ?? '', 1);
+            }
         }
 
         if (isset($data['status']) && $data['status'] === 'success') {
