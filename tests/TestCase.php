@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace ToneflixCode\KudiSmsPhp\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 

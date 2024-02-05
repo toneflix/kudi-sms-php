@@ -1,6 +1,6 @@
 <?php
 
-namespace ToneflixCode\Tests;
+namespace ToneflixCode\KudiSmsPhp\Tests;
 
 use ToneflixCode\KudiSmsPhp\SmsSender;
 use ToneflixCode\MessagingInterface\Exceptions\SmsSendingException;

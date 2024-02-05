@@ -17,10 +17,17 @@
             "ToneflixCode\\KudiSmsPhp\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "ToneflixCode\\KudiSmsPhp\\Tests\\": "tests"
+        }
+    },
     "authors": [
         {
-            "name": "3m1n3nc3",
-            "email": "mygames.ng@gmail.com"
+            "name": "Legacy",
+            "email": "legacy@toneflix.com.ng",
+            "homepage": "legacy.toneflix.com.ng",
+            "role": "Developer"
         }
     ],
     "scripts": {
