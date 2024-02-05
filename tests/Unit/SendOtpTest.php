@@ -8,7 +8,7 @@ use ToneflixCode\MessagingInterface\Exceptions\SmsSendingException;
 test('Can Send Otp To Recipient', function () {
     loadEnv();
 
-    $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_SERVER['TEST_NUMBERS'] ?? '');
+    $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
     $otp = rand(111111, 999999);
 
     if (isset($numbers[0])) {
@@ -26,7 +26,7 @@ test('Can Send Otp To Recipient', function () {
 test('Throws Invalid SenderId', function () {
     loadEnv();
 
-    $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_SERVER['TEST_NUMBERS'] ?? '');
+    $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
     $otp = rand(111111, 999999);
 
     if (isset($numbers[0])) {

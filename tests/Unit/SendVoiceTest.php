@@ -8,7 +8,7 @@ use ToneflixCode\MessagingInterface\Exceptions\VoiceSendingException;
 test('Can Send Voice Message', function () {
     loadEnv();
 
-    $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_SERVER['TEST_NUMBERS'] ?? '');
+    $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
 
     if (isset($numbers[0])) {
         try {
@@ -25,7 +25,7 @@ test('Can Send Voice Message', function () {
 test('Can Send Text To Speach Message', function () {
     loadEnv();
 
-    $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_SERVER['TEST_NUMBERS'] ?? '');
+    $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
 
     if (isset($numbers[0])) {
         try {
@@ -42,7 +42,7 @@ test('Can Send Text To Speach Message', function () {
 test('Throws Invalid Caller ID', function () {
     loadEnv();
 
-    $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_SERVER['TEST_NUMBERS'] ?? '');
+    $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
 
     if (isset($numbers[0])) {
         expect(fn () => (new VoiceSender())->send($numbers[0], 'https://download.samplelib.com/mp3/sample-3s.mp3'))

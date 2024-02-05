@@ -7,7 +7,7 @@ use ToneflixCode\MessagingInterface\Exceptions\SmsSendingException;
 
 test('Can Send Sms To Single Recipient', function () {
     loadEnv();
-    $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_SERVER['TEST_NUMBERS'] ?? '');
+    $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
 
     if (isset($numbers[0])) {
         try {
@@ -23,7 +23,7 @@ test('Can Send Sms To Single Recipient', function () {
 
 test('Can Send Sms To Multiple Recipients', function () {
     loadEnv();
-    $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_SERVER['TEST_NUMBERS'] ?? '');
+    $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
 
     if (isset($numbers[0])) {
         try {
@@ -43,7 +43,7 @@ test('Can Send Sms To Multiple Recipients', function () {
 test('Throws Invalid SenderId', function () {
     loadEnv();
 
-    $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_SERVER['TEST_NUMBERS'] ?? '');
+    $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
 
     if (isset($numbers[0])) {
         expect(fn () => (new SmsSender('xxx'))->corporate()->send($numbers[0], 'This is a test SMS.'))
