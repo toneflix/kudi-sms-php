@@ -21,8 +21,8 @@ jobs:
         echo "Use Api Key $KUDISMS_API_KEY. On Gateway $KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
         echo '<?php var_dump($_SERVER, $_ENV);' | php
       env:
-        KUDISMS_GATEWAY: 2
-        KUDISMS_API_KEY: "sss"
+        KUDISMS_GATEWAY: ${{ vars.KUDISMS_GATEWAY }}
+        KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
         KUDISMS_SENDER_ID: ${{ vars.KUDISMS_SENDER_ID }}
 
     - name: Validate composer.json and composer.lock
