@@ -1,5 +1,7 @@
 name: PHP Composer
 
+environment: testing
+
 env:
   KUDISMS_GATEWAY: ${{ secrets.KUDISMS_GATEWAY }}
   KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
@@ -18,7 +20,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    environment: testing
 
     steps:
     - uses: actions/checkout@v3
