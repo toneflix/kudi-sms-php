@@ -23,3 +23,39 @@ composer require toneflix/kudi-sms-php
 | KUDISMS_GATEWAY     | No       | Your prefered gateway    |
 | KUDISMS_API_KEY     | Yes      | Your API key             |
 | KUDISMS_SENDER_ID   | Yes      | SMS Sender ID            |
+
+## Usage
+
+### Initialize
+
+To initialize, simply call create new instance of the `SmsSender` class.
+
+```php
+use ToneflixCode\KudiSmsPhp\SmsSender;
+
+$instance = new SmsSender();
+```
+
+Optionally you can pass your `sender ID` and `API key` as parameters to the instance if you're unable to use environment variables.
+
+```php
+use ToneflixCode\KudiSmsPhp\SmsSender;
+
+$instance = new SmsSender('SenderID', 'APIKey');
+```
+
+### Send to a single number
+
+Call the `send` method with the number and message as parameters.
+
+```php
+$instance->send('0807...', 'This is a test SMS.');
+```
+
+### Send to a multiple numbers
+
+Call the `send` method with an array of numbers and message as parameters.
+
+```php
+$instance->send(['0807...', '0903...'], 'This is a test SMS.');
+```

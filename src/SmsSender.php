@@ -7,7 +7,7 @@ use ToneflixCode\SmsInterface\Exceptions\SmsSendingException;
 use ToneflixCode\SmsInterface\Initializable;
 use ToneflixCode\SmsInterface\SendSmsInterface;
 
-class SendSms implements SendSmsInterface
+class SmsSender implements SendSmsInterface
 {
     use Initializable;
 
