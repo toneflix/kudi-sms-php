@@ -91,6 +91,50 @@ $instance->coporate()->send(
 );
 ```
 
+### Initialize Voice Messaging
+
+To initialize, simply call create new instance of the `VoiceSender` class.
+
+```php
+use ToneflixCode\KudiSmsPhp\VoiceSender;
+
+$instance = new VoiceSender();
+```
+
+Optionally you can pass your `Caller ID` and `API key` as parameters to the instance if you're unable to use environment variables.
+
+```php
+use ToneflixCode\KudiSmsPhp\SmsSender;
+
+$instance = new SmsSender('CallerId', 'APIKey');
+```
+
+### Send voice message
+
+Call the `send` method with the number and a valid audio file url as parameters.
+
+```php
+$instance->send(
+    to: '0807...', 
+    url: string
+);
+```
+
+### Send text to speach message
+
+Call the `tts` method with the number and message as parameters.
+
+```php
+$instance->tts(
+    to: '0807...', 
+    message: string
+);
+```
+
+## Testing
+
+All tests are available withing the `tests` directory, most are skipped as the service is not free, you can also write your own tests.
+
 ## Contributors
 
 - [Legacy](https://github.com/3m1n3nc3)

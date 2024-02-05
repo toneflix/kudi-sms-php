@@ -5,10 +5,10 @@ namespace  ToneflixCode\KudiSmsPhp;
 use ToneflixCode\MessagingInterface\Exceptions\InitializationException;
 use ToneflixCode\MessagingInterface\Exceptions\SmsSendingException;
 use ToneflixCode\MessagingInterface\Initializable;
-use ToneflixCode\MessagingInterface\SendSmsInterface;
-use ToneflixCode\MessagingInterface\SendOtpInterface;
+use ToneflixCode\MessagingInterface\SmsInterface;
+use ToneflixCode\MessagingInterface\OtpInterface;
 
-class SmsSender implements SendSmsInterface, SendOtpInterface
+class SmsSender implements SmsInterface, OtpInterface
 {
     use Initializable;
 
