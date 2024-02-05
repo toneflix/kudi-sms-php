@@ -23,6 +23,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Print ENV
+      run: echo "Use Api Key $KUDISMS_API_KEY. On Gateway $KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
+
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
@@ -37,9 +40,6 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress 
-
-    - name: Print ENV
-      run: echo "Use Api Key $KUDISMS_API_KEY. On Gateway "$KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
 
     - name: Run test suite
       run: composer run-script test
