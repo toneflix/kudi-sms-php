@@ -16,8 +16,6 @@ class SendSms implements SendSmsInterface
 
     public function __construct(string $senderID = null, string $apiKey = null)
     {
-
-        var_dump($_SERVER);
         // Load the .env file
         $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ .  '/..');
         $dotenv->safeLoad();
@@ -27,9 +25,9 @@ class SendSms implements SendSmsInterface
 
         // Load the configuration
         $this->configure(
-            $senderID ?? $_ENV['KUDISMS_SENDER_ID'] ?? null,
-            $apiKey ?? $_ENV['KUDISMS_API_KEY'] ?? null,
-            $gateway ?? $_ENV['KUDISMS_GATEWAY'] ?? null,
+            $senderID ?? $_ENV['KUDISMS_SENDER_ID'] ?? $_SERVER['KUDISMS_SENDER_ID'] ?? null,
+            $apiKey ?? $_ENV['KUDISMS_API_KEY'] ?? $_SERVER['KUDISMS_API_KEY'] ?? null,
+            $gateway ?? $_ENV['KUDISMS_GATEWAY'] ?? $_SERVER['KUDISMS_GATEWAY'] ?? null,
         );
     }
 
