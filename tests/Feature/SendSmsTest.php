@@ -4,8 +4,6 @@ namespace ToneflixCode\Tests;
 
 use ToneflixCode\KudiSmsPhp\SendSms;
 
-var_dump($_SERVER);
-
 test('canSendSmsToSingleRecipient', function () {
     $sent = (new SendSms())->send('08075654709', 'This is a test SMS.');
     expect($sent)->toBeTrue();

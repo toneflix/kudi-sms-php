@@ -16,6 +16,8 @@ class SendSms implements SendSmsInterface
 
     public function __construct(string $senderID = null, string $apiKey = null)
     {
+
+        var_dump($_SERVER);
         // Load the .env file
         $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ .  '/..');
         $dotenv->safeLoad();
