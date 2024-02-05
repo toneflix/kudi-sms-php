@@ -44,10 +44,9 @@ test('Throws Invalid SenderId', function () {
     loadEnv();
 
     $numbers = explode(',', $_ENV['TEST_NUMBERS'] ?? $_ENV['TEST_NUMBERS'] ?? '');
-    $otp = rand(111111, 999999);
 
     if (isset($numbers[0])) {
-        expect(fn () => (new SmsSender('xxx'))->corporate()->send($numbers[0], $otp, 'TonEfLiX', '1111'))
+        expect(fn () => (new SmsSender('xxx'))->corporate()->send($numbers[0], 'This is a test SMS.'))
         ->toThrow(SmsSendingException::class, 'Unable to send sms: The sender ID do not exist.');
     } else {
         expect(false)->toBeTrue();
