@@ -11,11 +11,8 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     environment: testing
-
     steps:
     - uses: actions/checkout@v3
 
@@ -26,7 +23,7 @@ jobs:
       env:
         KUDISMS_GATEWAY: 2
         KUDISMS_API_KEY: "sss"
-        KUDISMS_SENDER_ID: "xxx"
+        KUDISMS_SENDER_ID: ${{ vars.KUDISMS_SENDER_ID }}
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
