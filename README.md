@@ -18,12 +18,12 @@ composer require toneflix-code/kudi-sms-php
 
 ### Configure environment
 
-| Variable            | Required | Description              |
-|---------------------|----------|--------------------------|
-| KUDISMS_GATEWAY     | No       | Your prefered gateway    |
-| KUDISMS_API_KEY     | Yes      | Your API key             |
-| KUDISMS_SENDER_ID   | Yes      | SMS Sender ID            |
-| TEST_NUMBERS        | No       | Numbers to send test sms |
+| Variable            | Required | Description                       |
+|---------------------|----------|-----------------------------------|
+| KUDISMS_GATEWAY     | No       | Your prefered gateway             |
+| KUDISMS_API_KEY     | Yes      | Your API key                      |
+| KUDISMS_SENDER_ID   | Yes      | SMS Sender ID                     |
+| TEST_NUMBERS        | No       | Numbers to use when running tests |
 
 ## Usage
 
