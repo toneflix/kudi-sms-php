@@ -1,12 +1,5 @@
 name: PHP Composer
 
-environment: testing
-
-env:
-  KUDISMS_GATEWAY: ${{ secrets.KUDISMS_GATEWAY }}
-  KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
-  KUDISMS_SENDER_ID: ${{ secrets.KUDISMS_SENDER_ID }}
-
 on:
   push:
     branches: [ "main" ]
@@ -25,7 +18,12 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Print ENV
+      environment: testing
       run: echo "Use Api Key $KUDISMS_API_KEY. On Gateway $KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
+      env:
+        KUDISMS_GATEWAY: ${{ secrets.KUDISMS_GATEWAY }}
+        KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
+        KUDISMS_SENDER_ID: ${{ secrets.KUDISMS_SENDER_ID }}
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
