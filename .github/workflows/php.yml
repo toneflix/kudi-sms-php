@@ -32,9 +32,9 @@ jobs:
       run: composer install --prefer-dist --no-progress 
 
     - name: Run test suite
-      run:  |
-        echo "Use Api Key $KUDISMS_API_KEY. On Gateway $KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
-        composer run-script test
+      #run:  |
+      #  echo "Use Api Key $KUDISMS_API_KEY. On Gateway $KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
+      run: composer run-script test
       env:
         KUDISMS_GATEWAY: ${{ vars.KUDISMS_GATEWAY }}
         KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
