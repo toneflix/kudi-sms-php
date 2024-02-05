@@ -1,5 +1,10 @@
 name: PHP Composer
 
+env:
+  KUDISMS_GATEWAY: ${{ secrets.KUDISMS_GATEWAY }}
+  KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
+  KUDISMS_SENDER_ID: ${{ secrets.KUDISMS_SENDER_ID }}
+
 on:
   push:
     branches: [ "main" ]
@@ -30,16 +35,12 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      run: composer install --prefer-dist --no-progress 
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+    - name: Print ENV
+      run: echo "Use Api Key $KUDISMS_API_KEY. On Gateway "$KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
 
     - name: Run test suite
-      env:
-          KUDISMS_GATEWAY: ${{ secrets.KUDISMS_GATEWAY }}
-          KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
-          KUDISMS_SENDER_ID: ${{ secrets.KUDISMS_SENDER_ID }}
       run: composer run-script test
 
     - name: Upload coverage reports to Codecov
