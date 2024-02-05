@@ -14,11 +14,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    environment: testing
+
     steps:
     - uses: actions/checkout@v3
 
     - name: Print ENV
-      environment: testing
       run: echo "Use Api Key $KUDISMS_API_KEY. On Gateway $KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
       env:
         KUDISMS_GATEWAY: ${{ secrets.KUDISMS_GATEWAY }}
