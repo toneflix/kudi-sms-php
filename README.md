@@ -13,7 +13,7 @@ KudiSMS PHP is a PHP wrapper library for KudiSMS.
 ### Installation
 
 ```bash
-composer require toneflix/kudi-sms-php
+composer require toneflix-code/kudi-sms-php
 ```
 
 ### Configure environment
