@@ -39,7 +39,7 @@ jobs:
         KUDISMS_GATEWAY: ${{ vars.KUDISMS_GATEWAY }}
         KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
         KUDISMS_SENDER_ID: ${{ vars.KUDISMS_SENDER_ID }}
-        TEST_NUMBERS: ${{ secrets.TEST_NUMBERS }}
+        TEST_NUMBERS: ${{ vars.TEST_NUMBERS }}
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
