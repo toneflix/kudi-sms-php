@@ -23,8 +23,8 @@ jobs:
       run: echo "Use Api Key $KUDISMS_API_KEY. On Gateway $KUDISMS_GATEWAY. And Sender ID $KUDISMS_SENDER_ID"
       env:
         KUDISMS_GATEWAY: 2
-        KUDISMS_API_KEY: ${{ secrets.KUDISMS_API_KEY }}
-        KUDISMS_SENDER_ID: ${{ env.KUDISMS_SENDER_ID }}
+        KUDISMS_API_KEY: "sss"
+        KUDISMS_SENDER_ID: "xxx"
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
