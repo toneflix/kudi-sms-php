@@ -14,7 +14,7 @@ class VoiceSender implements VoiceInterface
     public string $baseUrl;
     public \GuzzleHttp\Client $client;
 
-    public function __construct(string $callerID = null, string $apiKey = null)
+    public function __construct(string $callerId = null, string $apiKey = null)
     {
         // Set the base url
         $this->baseUrl = 'https://my.kudisms.net/api/';
@@ -28,7 +28,7 @@ class VoiceSender implements VoiceInterface
 
         // Load the configuration
         $this->configure(
-            $callerID ?? $_ENV['KUDISMS_SENDER_ID'] ?? $_SERVER['KUDISMS_SENDER_ID'] ?? null,
+            $callerId ?? $_ENV['KUDISMS_SENDER_ID'] ?? $_SERVER['KUDISMS_SENDER_ID'] ?? null,
             $apiKey ?? $_ENV['KUDISMS_API_KEY'] ?? $_SERVER['KUDISMS_API_KEY'] ?? null,
             $gateway ?? $_ENV['KUDISMS_GATEWAY'] ?? $_SERVER['KUDISMS_GATEWAY'] ?? null,
         );

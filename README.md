@@ -133,11 +133,17 @@ $instance->tts(
 
 ## Testing
 
+``` bash
+$ composer test
+```
+
 All tests are available withing the `tests` directory, most are skipped as the service is not free, you can also write your own tests.
 
 ## Contributors
 
 - [Legacy](https://github.com/3m1n3nc3)
+- [All Contributors](../../contributors)
 
 ## License
-[MIT](./LICENSE)
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
