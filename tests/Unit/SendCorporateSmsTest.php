@@ -46,8 +46,8 @@ test('Throws Invalid SenderId', function () {
     $numbers = explode(',', $_ENV['KUDISMS_TEST_NUMBERS'] ?? $_SERVER['KUDISMS_TEST_NUMBERS'] ?? '');
 
     if (isset($numbers[0])) {
-        expect(fn () => (new SmsSender('xxx'))->corporate()->send($numbers[0], 'This is a test SMS.'))
-        ->toThrow(SmsSendingException::class, 'Unable to send sms: The sender ID do not exist.');
+        expect(fn() => (new SmsSender('xxx'))->corporate()->send($numbers[0], 'This is a test SMS.'))
+            ->toThrow(SmsSendingException::class, 'Unable to send sms: The sender ID does not exist.');
     } else {
         expect(false)->toBeTrue();
     }

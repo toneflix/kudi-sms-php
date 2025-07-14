@@ -30,8 +30,8 @@ test('Throws Invalid SenderId', function () {
     $otp = rand(111111, 999999);
 
     if (isset($numbers[0])) {
-        expect(fn () => (new SmsSender('xxx'))->sendOtp($numbers[0], $otp, 'TonEfLiX', '1111'))
-        ->toThrow(SmsSendingException::class, 'Unable to send sms: The sender ID do not exist.');
+        expect(fn() => (new SmsSender('xxx'))->sendOtp($numbers[0], $otp, 'TonEfLiX', '1111'))
+            ->toThrow(SmsSendingException::class, 'Unable to send sms: The sender ID does not exist.');
     } else {
         expect(false)->toBeTrue();
     }
