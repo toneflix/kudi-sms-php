@@ -15,7 +15,7 @@ class SmsSender implements SmsInterface, OtpInterface
     public string $baseUrl;
     public \GuzzleHttp\Client $client;
 
-    public function __construct(?string $senderId = null, ?string $apiKey = null)
+    public function __construct(?string $senderID = null, ?string $apiKey = null)
     {
         // Set the base url
         $this->baseUrl = 'https://my.kudisms.net/api/';
@@ -29,7 +29,7 @@ class SmsSender implements SmsInterface, OtpInterface
 
         // Load the configuration
         $this->configure(
-            $senderId ?? $_ENV['KUDISMS_SENDER_ID'] ?? $_SERVER['KUDISMS_SENDER_ID'] ?? null,
+            $senderID ?? $_ENV['KUDISMS_SENDER_ID'] ?? $_SERVER['KUDISMS_SENDER_ID'] ?? null,
             $apiKey ?? $_ENV['KUDISMS_API_KEY'] ?? $_SERVER['KUDISMS_API_KEY'] ?? null,
             $gateway ?? $_ENV['KUDISMS_GATEWAY'] ?? $_SERVER['KUDISMS_GATEWAY'] ?? null,
         );
@@ -70,7 +70,7 @@ class SmsSender implements SmsInterface, OtpInterface
             $response = $this->client->post($this->endpoint ?? 'sms', [
                 'query' => [
                     'token' => $this->apiKey,
-                    'senderID' => $this->senderId,
+                    'senderID' => $this->senderID,
                     'gateway' => $this->gateway,
                     'message' => $message,
                     'recipient' => $recipients,

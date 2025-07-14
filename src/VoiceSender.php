@@ -14,7 +14,7 @@ class VoiceSender implements VoiceInterface
     public string $baseUrl;
     public \GuzzleHttp\Client $client;
 
-    public function __construct(string $callerId = null, string $apiKey = null)
+    public function __construct(?string $callerId = null, ?string $apiKey = null)
     {
         // Set the base url
         $this->baseUrl = 'https://my.kudisms.net/api/';
@@ -43,7 +43,7 @@ class VoiceSender implements VoiceInterface
      * @throws \ToneflixCode\MessagingInterface\Exceptions\VoiceSendingException
      * @return bool
      *
-    */
+     */
     public function send(string $to, string $url): bool
     {
         return $this->sendMessage(
@@ -65,7 +65,7 @@ class VoiceSender implements VoiceInterface
      * @throws \ToneflixCode\MessagingInterface\Exceptions\VoiceSendingException
      * @return bool
      *
-    */
+     */
     public function tts(string $to, string $message): bool
     {
         $this->endpoint = 'texttospeech';
@@ -85,7 +85,7 @@ class VoiceSender implements VoiceInterface
      * @throws VoiceSendingException
      * @return bool
      *
-    */
+     */
     public function sendMessage(array $params = []): bool
     {
         // Try to send the voice
