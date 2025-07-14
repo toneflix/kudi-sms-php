@@ -15,7 +15,7 @@ class SmsSender implements SmsInterface, OtpInterface
     public string $baseUrl;
     public \GuzzleHttp\Client $client;
 
-    public function __construct(string $senderId = null, string $apiKey = null)
+    public function __construct(?string $senderId = null, ?string $apiKey = null)
     {
         // Set the base url
         $this->baseUrl = 'https://my.kudisms.net/api/';
@@ -44,7 +44,7 @@ class SmsSender implements SmsInterface, OtpInterface
      * @throws \ToneflixCode\MessagingInterface\Exceptions\SmsSendingException
      * @return bool
      *
-    */
+     */
     public function send(string $recipient, string $message): bool
     {
         return $this->sendBulk([$recipient], $message);
@@ -60,7 +60,7 @@ class SmsSender implements SmsInterface, OtpInterface
      * @throws SmsSendingException
      * @return bool
      *
-    */
+     */
     public function sendBulk(array $recipients, string $message): bool
     {
         $recipients = join(',', $recipients);
@@ -118,7 +118,7 @@ class SmsSender implements SmsInterface, OtpInterface
      * @throws \ToneflixCode\MessagingInterface\Exceptions\SmsSendingException
      * @return bool
      *
-    */
+     */
     public function sendOtp(string $recipient, string $otp, string $appnamecode, string $templatecode): bool
     {
         // Try to send the SMS

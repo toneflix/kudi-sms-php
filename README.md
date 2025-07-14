@@ -19,7 +19,7 @@ composer require toneflix-code/kudi-sms-php
 ### Configure environment
 
 | Variable             | Required | Description                       |
-|----------------------|----------|-----------------------------------|
+| -------------------- | -------- | --------------------------------- |
 | KUDISMS_GATEWAY      | No       | Your prefered gateway             |
 | KUDISMS_API_KEY      | Yes      | Your API key                      |
 | KUDISMS_SENDER_ID    | Yes      | SMS Sender ID                     |
@@ -51,9 +51,9 @@ Call the `sendOtp` method with the recipient, otp, appnamecode and templatecode 
 
 ```php
 $instance->sendOtp(
-    recipient: '0807...', 
-    otp: string, 
-    appnamecode: string, 
+    recipient: '0807...',
+    otp: string,
+    appnamecode: string,
     templatecode: string
 );
 ```
@@ -64,7 +64,7 @@ Call the `send` method with the number and message as parameters.
 
 ```php
 $instance->send(
-    recipient: '0807...', 
+    recipient: '0807...',
     message: string
 );
 ```
@@ -75,18 +75,18 @@ Call the `sendBulk` method with an array of numbers and message as parameters.
 
 ```php
 $instance->sendBulk(
-    recipients: ['0807...', '0903...'], 
+    recipients: ['0807...', '0903...'],
     message: string
 );
 ```
 
-### Coporate SMS
+### Corporate SMS
 
-To send using the coporate endpoint call the chainable `coporate` method before calling the `send` or `sendBulk` methods.
+To send using the corporate endpoint call the chainable `corporate` method before calling the `send` or `sendBulk` methods.
 
 ```php
-$instance->coporate()->send(
-    recipient: '0807...', 
+$instance->corporate()->send(
+    recipient: '0807...',
     message: string
 );
 ```
@@ -115,7 +115,7 @@ Call the `send` method with the number and a valid audio file url as parameters.
 
 ```php
 $instance->send(
-    to: '0807...', 
+    to: '0807...',
     url: string
 );
 ```
@@ -126,14 +126,14 @@ Call the `tts` method with the number and message as parameters.
 
 ```php
 $instance->tts(
-    to: '0807...', 
+    to: '0807...',
     message: string
 );
 ```
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
